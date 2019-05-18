@@ -26,8 +26,7 @@ def plot(df, filename, layout):
         for grinder in grinders
     ]
     fig = go.Figure(data=data, layout=layout)
-    # py.offline.plot
-    py.plotly.plot(fig, filename=filename, auto_open=True)
+    py.offline.plot(fig, filename=filename, auto_open=True)
 
 
 if __name__ == "__main__":
@@ -69,5 +68,5 @@ if __name__ == "__main__":
             range=(0, 0.6),
         )
     )
-    plot(df=df_non_cumulative, filename="noncumulative", layout=non_cumulative_layout)
-    plot(df=df_cumulative, filename="cumulative", layout=cumulative_layout)
+    plot(df=df_non_cumulative, filename="noncumulative.html", layout=non_cumulative_layout)
+    plot(df=df_cumulative, filename="cumulative.html", layout=cumulative_layout)
