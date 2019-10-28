@@ -3,7 +3,7 @@
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
-
+import sys
 
 def plot(df, filename, layout):
     grinders = df.index.values
@@ -30,7 +30,7 @@ def plot(df, filename, layout):
 
 
 if __name__ == "__main__":
-    df_non_cumulative = pd.read_csv('grinders.csv', index_col=0)
+    df_non_cumulative = pd.read_csv(sys.argv[1], index_col=0)
     print("Non-cumulative distribution:")
     print(df_non_cumulative)
     df_cumulative = df_non_cumulative.cumsum(axis=1)
@@ -41,6 +41,8 @@ if __name__ == "__main__":
     )
     print("Cumulative distribution:")
     print(df_cumulative)
+
+    print(df_non_cumulative.to_html())
 
     cumulative_layout = go.Layout(
         title="Grind Distribution (cumulative)",
@@ -70,3 +72,4 @@ if __name__ == "__main__":
     )
     plot(df=df_non_cumulative, filename="noncumulative.html", layout=non_cumulative_layout)
     plot(df=df_cumulative, filename="cumulative.html", layout=cumulative_layout)
+
